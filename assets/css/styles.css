@@ -1,0 +1,79 @@
+body{
+    background-color: #001f66;
+}
+
+.calculadora{
+    background-color: gray;
+
+    width: 450px; /*el ancho de la calculadora*/
+    padding: 20px; /*el espacio entre el borde y el contenido de dentro*/
+
+    border-radius: 30px; /*el redondeo de las esquinas*/
+
+    margin: 50px auto; /* 50px de margen arriba y abajo, y auto para centrar la calculadora*/
+}
+/*estilo de la pantalla*/
+.pantalla{
+    background-color: #c4d7a1;
+
+    border: 5px solid black; /*borde solido de 5px*/
+
+    height: 55px; /*alto de la pantalla*/
+
+    /*margin-bottom: 0px; /*espacio entre la pantalla y los botones*/
+    padding: 10px; /*el numero no toca el borde de la pantalla*/
+
+    /*sombra interna */
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.6);
+
+    font-size: 50px; /*el tamaño del numero*/
+    font-family: monospace; /*el tipo de letra*/
+    text-align: right; /*el numero se alinea a la derecha*/
+    display: flex; /*para que el numero se alinee a la derecha y no se salga de la pantalla*/
+    justify-content: flex-end;/*para que el numero se alinee a la derecha*/
+    align-items: center;/*para que el numero se alinee verticalmente al centro*/
+    overflow: hidden; /*si el numero es muy grande, no se sale de la pantalla*/
+    white-space: nowrap; /*para que el numero no se divida en varias lineas*/
+    /*viene de .superior*/
+    flex: 1; /*para que la pantalla ocupe todo el espacio disponible*/
+}
+
+/*botones que están debajo de la pantalla*/
+.botones{
+    display: grid; /*para que los botones se acomoden en una cuadrícula*/
+    grid-template-columns: repeat(4, 1fr); /*4 columnas de igual tamaño (1fr)*/
+    justify-content: center;
+    gap: 12px; /*espacio entre los botones*/
+}
+.botonC{
+    width: 85px;
+}
+button{
+    height: 70px; /*alto de los botones*/
+    width: 70px; /*ancho de los botones*/
+    border-radius: 50%; /*botones redondos*/
+    border: none; /*sin borde*/
+    font-size: 25px; /*tamaño del numero*/
+    /*sombra del boton: desplazamiento horizontal / vertical / difuminado*/
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.7);
+    color: white;
+    justify-self: center;
+}
+button:active{
+    transform: translateY(1px); /*cuando se presiona el boton, se mueve 1px hacia abajo*/
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.7);
+}
+button:hover{
+    filter: brightness(1.15);
+}
+.numero{background-color: #444;}
+.operador{background-color: #1f5a99;}
+.igual{background-color: #5d8f31;}
+.borrar{background-color: #ff3030;}
+.superior{
+    display: flex; /*para que los elementos se acomoden en una fila*/
+    gap: 15px; /*espacio entre los elementos*/
+
+    margin-bottom: 20px; /*espacio entre la fila y los botones*/
+    align-items: center; /*para que los elementos se alineen verticalmente*/
+}
