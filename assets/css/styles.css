@@ -77,3 +77,8 @@ button:hover{
     margin-bottom: 20px; /*espacio entre la fila y los botones*/
     align-items: center; /*para que los elementos se alineen verticalmente*/
 }
+.historial-info{
+    color: #FFFFFF;
+    font-size: 15px;
+    text-align: center;
+}
