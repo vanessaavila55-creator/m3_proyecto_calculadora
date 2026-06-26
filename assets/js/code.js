@@ -1,44 +1,46 @@
 const pantalla = document.getElementById("pantalla");
 pantalla.addEventListener("click", mostrarHistorial);
+const textoPantalla = pantalla.innerText;
 
+const MAX_DIGITOS = 10;
 let numeroActual = "";
 let elementos = [];
 let historial = [];
 function insertar(caracter) {
-    let ultimoCaracter = pantalla.innerText.slice(-1);
-    if (pantalla.innerText == "0") {
-        if (caracter == "+" || caracter == "*" || caracter == "/") {
+    let ultimoCaracter = textoPantalla.slice(-1);
+    if (textoPantalla === "0") {
+        if (caracter === "+" || caracter === "*" || caracter === "/") {
             return;
         }
-        if (caracter == ".") {
+        if (caracter === ".") {
             if (parser("0") && parser(".")) {
-                pantalla.innerText = "0.";
+                textoPantalla = "0.";
             }
         } else {
             if (parser(caracter)) {
-                pantalla.innerText = caracter;
+                textoPantalla = caracter;
             }
         }
     } else if (esOperador(ultimoCaracter)) {
-        if (esOperador(caracter) || caracter == ".") {
+        if (esOperador(caracter) || caracter === ".") {
             return;
         } else {
             if (parser(caracter)) {
-                pantalla.innerText += caracter;
+                textoPantalla += caracter;
             }
         }
     } else {
         if (parser(caracter)) {
-            pantalla.innerText += caracter;
+            textoPantalla += caracter;
         }
     }
 }
 function parser(caracter) {
-    if (caracter == "." && numeroActual.includes(".")) {
+    if (caracter === "." && numeroActual.includes(".")) {
         return false;
     }
-    if (esNumero(caracter) || caracter == ".") {
-        if (numeroActual == "0" && caracter != ".") {
+    if (esNumero(caracter) || caracter === ".") {
+        if (numeroActual === "0" && caracter != ".") {
             numeroActual = caracter;
         } else {
             numeroActual += caracter;
@@ -53,8 +55,8 @@ function parser(caracter) {
     return false;
 }
 function calcular() {
-    let expresion = pantalla.innerText;
-    let ultimoCaracter = pantalla.innerText.slice(-1);
+    let expresion = textoPantalla;
+    let ultimoCaracter = textoPantalla.slice(-1);
     if (esOperador(ultimoCaracter)) {
         //elementos.pop();
         return;
@@ -78,8 +80,8 @@ function calcular() {
                 resultado *= numero;
                 break;
             case "/":
-                if (numero == 0) {
-                    pantalla.innerText = "Error: n÷0";
+                if (numero === 0) {
+                    textoPantalla = "Error: n÷0";
                     elementos = [];
                     numeroActual = "";
                     return;
@@ -100,10 +102,10 @@ function calcular() {
         historial.shift();
     }
 
-    if (resultado.toString().length > 10) {
-        pantalla.innerText = resultado.toExponential(4);
+    if (resultado.toString().length > MAX_DIGITOS) {
+        textoPantalla = resultado.toExponential(4);
     } else {
-        pantalla.innerText = resultado;
+        textoPantalla = resultado;
     }
     elementos = [];
     numeroActual = resultado.toString();
@@ -113,10 +115,10 @@ function esNumero(caracter) {
     return !isNaN(caracter);
 }
 function esOperador(caracter) {
-    return caracter == "+" || caracter == "-" || caracter == "*" || caracter == "/";
+    return caracter === "+" || caracter === "-" || caracter === "*" || caracter === "/";
 }
 function borrar() {
-    pantalla.innerText = "0";
+    textoPantalla = "0";
     numeroActual = "";
     elementos = [];
 }
@@ -130,11 +132,12 @@ function mostrarHistorial() {
     let mensaje = "";
 
     for (let i = 0; i < historial.length; i++) {
+        const operacion = historial[i];
 
         mensaje +=
-            "Fecha: " + historial[i].fecha + "\n" +
-            "Operación: " + historial[i].operacion + "\n" +
-            "Resultado: " + historial[i].resultado + "\n\n";
+            "Fecha: " + operacion.fecha + "\n" +
+            "Operación: " + operacion.operacion + "\n" +
+            "Resultado: " + operacion.resultado + "\n\n";
     }
 
     alert(mensaje);

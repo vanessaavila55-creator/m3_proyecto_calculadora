@@ -34,13 +34,17 @@ El proyecto fue desarrollado utilizando JavaScript puro (Vanilla JavaScript), si
 calculadora/
 │
 ├── index.html
-├── assets/
-│   ├── css/
-│   │   └── styles_calculadora.css
-│   └── js/
-│       └── code.js
+├── README.md
 │
-└── README.md
+└── assets/
+    ├── css/
+    │   └── styles_calculadora.css
+    │
+    ├── js/
+    │   └── code.js
+    │
+    └── img/
+        └── calculadora.png
 ```
 
 ## Conceptos de programación aplicados
