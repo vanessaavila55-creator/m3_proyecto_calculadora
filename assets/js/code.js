@@ -1,6 +1,6 @@
 const pantalla = document.getElementById("pantalla");
 pantalla.addEventListener("click", mostrarHistorial);
-const textoPantalla = pantalla.innerText;
+let textoPantalla = pantalla.innerText;
 
 const MAX_DIGITOS = 10;
 let numeroActual = "";
