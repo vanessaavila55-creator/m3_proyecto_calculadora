@@ -1,24 +1,23 @@
 const pantalla = document.getElementById("pantalla");
 pantalla.addEventListener("click", mostrarHistorial);
-let textoPantalla = pantalla.innerText;
 
 const MAX_DIGITOS = 10;
 let numeroActual = "";
 let elementos = [];
 let historial = [];
 function insertar(caracter) {
-    let ultimoCaracter = textoPantalla.slice(-1);
-    if (textoPantalla === "0") {
+    let ultimoCaracter = pantalla.innerText.slice(-1);
+    if (pantalla.innerText === "0") {
         if (caracter === "+" || caracter === "*" || caracter === "/") {
             return;
         }
         if (caracter === ".") {
             if (parser("0") && parser(".")) {
-                textoPantalla = "0.";
+                pantalla.innerText = "0.";
             }
         } else {
             if (parser(caracter)) {
-                textoPantalla = caracter;
+                pantalla.innerText = caracter;
             }
         }
     } else if (esOperador(ultimoCaracter)) {
@@ -26,12 +25,12 @@ function insertar(caracter) {
             return;
         } else {
             if (parser(caracter)) {
-                textoPantalla += caracter;
+                pantalla.innerText += caracter;
             }
         }
     } else {
         if (parser(caracter)) {
-            textoPantalla += caracter;
+            pantalla.innerText += caracter;
         }
     }
 }
@@ -55,8 +54,8 @@ function parser(caracter) {
     return false;
 }
 function calcular() {
-    let expresion = textoPantalla;
-    let ultimoCaracter = textoPantalla.slice(-1);
+    let expresion = pantalla.innerText;
+    let ultimoCaracter = pantalla.innerText.slice(-1);
     if (esOperador(ultimoCaracter)) {
         //elementos.pop();
         return;
@@ -81,7 +80,7 @@ function calcular() {
                 break;
             case "/":
                 if (numero === 0) {
-                    textoPantalla = "Error: n÷0";
+                    pantalla.innerText = "Error: n÷0";
                     elementos = [];
                     numeroActual = "";
                     return;
@@ -103,9 +102,9 @@ function calcular() {
     }
 
     if (resultado.toString().length > MAX_DIGITOS) {
-        textoPantalla = resultado.toExponential(4);
+        pantalla.innerText = resultado.toExponential(4);
     } else {
-        textoPantalla = resultado;
+        pantalla.innerText = resultado;
     }
     elementos = [];
     numeroActual = resultado.toString();
@@ -118,7 +117,7 @@ function esOperador(caracter) {
     return caracter === "+" || caracter === "-" || caracter === "*" || caracter === "/";
 }
 function borrar() {
-    textoPantalla = "0";
+    pantalla.innerText = "0";
     numeroActual = "";
     elementos = [];
 }
